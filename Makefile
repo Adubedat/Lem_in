@@ -6,7 +6,7 @@
 #    By: adubedat <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/03/07 18:29:44 by adubedat          #+#    #+#              #
-#    Updated: 2016/04/19 07:38:42 by adubedat         ###   ########.fr        #
+#    Updated: 2016/04/21 20:20:13 by adubedat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ SRC_NAME =  main.c \
 			get_input.c \
 			error.c \
 			solve.c \
+			solve2.c \
 
 OBJ = $(SRC_NAME:.c=.o)
 

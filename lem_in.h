@@ -6,7 +6,7 @@
 /*   By: adubedat <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/18 21:03:50 by adubedat          #+#    #+#             */
-/*   Updated: 2016/04/19 06:32:42 by adubedat         ###   ########.fr       */
+/*   Updated: 2016/04/21 22:48:42 by adubedat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,29 @@ typedef struct		s_rooms
 	int				start;
 	int				end;
 	int				number;
+	int				used;
 	struct s_rooms	*next;
 }					t_rooms;
+
+typedef struct		s_room
+{
+	char			*name;
+	struct s_room	*next;
+}					t_room;
+
+typedef struct		s_paths
+{
+	t_room			*room;	
+	struct s_paths	*next;
+}					t_paths;
 
 t_rooms				*get_input(char **input, t_rooms *room, int start, int end);
 int					check_tube(char *str, int i, t_rooms *room);
 void				free_split(char **split);
 void				error_room(void);
 void				check_data(t_rooms *room);
-void				solve(t_rooms *room);
+void				solve(t_rooms *room, t_paths *paths);
+t_room				*create_elem(t_room *path, char *name);
+void				print_list_number(t_rooms *room);
 
 #endif

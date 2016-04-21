@@ -6,7 +6,7 @@
 /*   By: adubedat <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/18 21:45:10 by adubedat          #+#    #+#             */
-/*   Updated: 2016/04/19 06:33:00 by adubedat         ###   ########.fr       */
+/*   Updated: 2016/04/21 22:27:29 by adubedat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ static t_rooms	*create_room(t_rooms *room, char *str, int start, int end)
 	new->start = start;
 	new->end = end;
 	new->number = -1;
+	new->used = 0;
 	new->next = room;
 	room = new;
 	free_split(split);
@@ -117,8 +118,8 @@ t_rooms			*get_input(char **input, t_rooms *room, int start, int end)
 {
 	char	*str;
 
-	get_next_line(0, &str);
-	if (str[0] == '\0')
+	
+	if (get_next_line(0, &str) == 0 || str[0] == '\0')
 		return (room);
 	if (ft_strcmp(str, "##start") == 0)
 		start = 1;

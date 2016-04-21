@@ -6,7 +6,7 @@
 /*   By: adubedat <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/18 20:02:35 by adubedat          #+#    #+#             */
-/*   Updated: 2016/04/19 07:38:48 by adubedat         ###   ########.fr       */
+/*   Updated: 2016/04/21 22:28:14 by adubedat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,10 @@ int			main(int argc, char **argv)
 	t_rooms	*room;
 	int		ants;
 	char	*input;
-	char	*str;
+	t_paths	*paths;
 
 	room = NULL;
+	paths = NULL;
 	input = ft_strdup("");
 	ants = get_ants_number(&input);
 	room = get_input(&input, room, 0, 0);
@@ -57,6 +58,6 @@ int			main(int argc, char **argv)
 	if (ants == 0)
 		return (0);
 	ft_putchar('\n');
-	solve(room);
+	solve(room, paths);
 	return (0);
 }

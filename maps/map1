@@ -1,0 +1,15 @@
+10
+##start
+g 0 0
+f 16 3
+##end
+d 16 5
+r 9 3
+t 2 5
+y 2 5
+g-f
+f-d
+g-y
+y-t
+t-r
+r-d
