@@ -6,7 +6,7 @@
 /*   By: adubedat <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/19 03:09:24 by adubedat          #+#    #+#             */
-/*   Updated: 2016/04/19 06:21:26 by adubedat         ###   ########.fr       */
+/*   Updated: 2016/04/22 17:16:56 by adubedat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,12 @@ void	check_data(t_rooms *room)
 void	error_room(void)
 {
 	ft_putendl("Error : Room's name already used");
+	exit (1);
+}
+
+void	path_error(void)
+{
+	ft_putendl("Error : No path founded");
 	exit (1);
 }
 

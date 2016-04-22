@@ -6,7 +6,7 @@
 /*   By: adubedat <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/18 21:03:50 by adubedat          #+#    #+#             */
-/*   Updated: 2016/04/21 22:48:42 by adubedat         ###   ########.fr       */
+/*   Updated: 2016/04/22 17:57:54 by adubedat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,12 @@ int					check_tube(char *str, int i, t_rooms *room);
 void				free_split(char **split);
 void				error_room(void);
 void				check_data(t_rooms *room);
-void				solve(t_rooms *room, t_paths *paths);
+void				solve(t_rooms *room, t_paths **paths);
 t_room				*create_elem(t_room *path, char *name);
-void				print_list_number(t_rooms *room);
+void				print_list_number(t_tubes *room);
+t_rooms				*search_temp2(t_rooms *start);
+void				path_error(void);
+void				delete_path(t_room **path);
+t_paths				*initialize_new(void);
 
 #endif

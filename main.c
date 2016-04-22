@@ -6,7 +6,7 @@
 /*   By: adubedat <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/18 20:02:35 by adubedat          #+#    #+#             */
-/*   Updated: 2016/04/21 22:28:14 by adubedat         ###   ########.fr       */
+/*   Updated: 2016/04/22 17:47:48 by adubedat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,12 @@ int			main(int argc, char **argv)
 	if (ants == 0)
 		return (0);
 	ft_putchar('\n');
-	solve(room, paths);
+	solve(room, &paths);
+	t_paths	*temp = paths;
+	while (temp != NULL)
+	{
+		ft_printf("%s\n", temp->room->name);
+		temp = temp->next;
+	}
 	return (0);
 }

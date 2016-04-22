@@ -6,7 +6,7 @@
 /*   By: adubedat <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/19 05:49:24 by adubedat          #+#    #+#             */
-/*   Updated: 2016/04/21 22:48:46 by adubedat         ###   ########.fr       */
+/*   Updated: 2016/04/22 18:00:59 by adubedat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,69 +49,58 @@ static void	found_shorter_path(t_rooms *room, t_room **path)
 	t_rooms *temp2;
 
 	temp = room->tubes;
-	temp2 = room->tubes->room;
+	temp2 = room;
+	*path = create_elem(*path, temp2->name);
+	temp2->used = 1;
+	if (temp2->end == 1 || temp2->number > room->number)
+		return ;
 	while (temp != NULL)
 	{
-		if (temp->room->number < temp2->number && temp->room->number != -1
-				&& temp->room->used == 0)
+		if ((temp->room->number < temp2->number && temp->room->number != -1
+				&& temp->room->used == 0) || temp->room->end == 1)
 			temp2 = temp->room;
 		temp = temp->next;
 	}
-	ft_printf("====> %s\n", temp2->name);
-	*path = create_elem(*path, temp2->name);
-//	ft_printf("==> %s\n", (*path)->name);
-	t_room *test = *path;
-	while (test != NULL)
+	if (temp2->used == 1)
 	{
-		ft_printf("==> %s\n", test->name);
-		test = test->next;
-	}
-	if (temp2->end != 1)
-		temp2->used = 1;
-	if (temp2->end == 1 || temp2->number > room->number)
+		if (temp2->end == 1)
+			*path = create_elem(*path, temp2->name);
+		else
+			delete_path(path);
 		return ;
+	}
 	found_shorter_path(temp2, path);
 }
 
-static void	create_paths(t_rooms *room, t_paths *paths)
+static void	create_paths(t_rooms *room, t_paths **paths)
 {
-	t_tubes	*temp;
-	t_paths	*temp2;
+	t_rooms	*temp2;
+	t_paths *tmp;
+	t_paths	*new;
 
-	temp2 = paths;
-	temp = room->tubes;
-	while (temp != NULL)
+	if ((temp2 = search_temp2(room)) == NULL)
+		return ;
+	tmp = *paths;
+	if (*paths == NULL)
 	{
-		while (temp2 != NULL
-				&& ft_strcmp(temp2->room->name, temp->room->name) != 0)
-			temp2 = temp2->next;
-		if (temp2 == NULL)
-		{
-			temp2 = (t_paths*)malloc(sizeof(t_paths));
-			temp2->room = NULL;
-			temp2->next = NULL;
-			found_shorter_path(room, &temp2->room);
-			print_list_number(room);
-			ft_printf("%s\n%s\n", temp2->room->name, temp->room->name);
-		}
-		else
-			temp = temp->next;
+		(*paths) = (t_paths*)malloc(sizeof(t_paths));
+		(*paths)->room = NULL;
+		(*paths)->next = NULL;
+		found_shorter_path(temp2, &((*paths)->room));
 	}
+	else
+	{
+		while (tmp->next != NULL)
+			tmp = tmp->next;
+		new = initialize_new();
+		found_shorter_path(temp2, &(new->room));
+		if (new->room)
+			tmp->next = new;
+	}
+	create_paths(room, paths);
 }
 
-void		print_list_number(t_rooms *room)
-{
-	t_rooms *temp;
-
-	temp = room;
-	while (temp != NULL)
-	{
-		ft_printf("%s -> %d\n", temp->name, temp->used);
-		temp = temp->next;
-	}
-}
-
-void		solve(t_rooms *room, t_paths *paths)
+void		solve(t_rooms *room, t_paths **paths)
 {
 	t_rooms *temp;
 	int		i;
@@ -132,7 +121,8 @@ void		solve(t_rooms *room, t_paths *paths)
 	temp = room;
 	while (temp->start != 1)
 		temp = temp->next;
-	ft_putchar('Z');
-	print_list_number(room);
+	temp->number = 2147483647;
 	create_paths(temp, paths);
+	if (*paths == NULL)
+		path_error();
 }
