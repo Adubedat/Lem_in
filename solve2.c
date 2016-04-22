@@ -6,13 +6,13 @@
 /*   By: adubedat <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/21 18:34:26 by adubedat          #+#    #+#             */
-/*   Updated: 2016/04/22 17:57:20 by adubedat         ###   ########.fr       */
+/*   Updated: 2016/04/22 20:03:23 by adubedat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-t_room	*create_elem(t_room *path, char *name)
+t_room	*create_elem(t_room *path, char *name, int number)
 {
 	t_room	*temp;
 	t_room	*new;
@@ -22,6 +22,8 @@ t_room	*create_elem(t_room *path, char *name)
 	{
 		path = (t_room*)malloc(sizeof(t_room));
 		path->name = ft_strdup(name);
+		path->ant = 0;
+		path->number = number;
 		path->next = NULL;
 	}
 	else
@@ -30,6 +32,8 @@ t_room	*create_elem(t_room *path, char *name)
 			temp = temp->next;
 		new = (t_room*)malloc(sizeof(t_room));
 		new->name = ft_strdup(name);
+		new->ant = 0;
+		new->number = number;
 		new->next = NULL;
 		temp->next = new;
 	}

@@ -6,7 +6,7 @@
 /*   By: adubedat <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/19 05:49:24 by adubedat          #+#    #+#             */
-/*   Updated: 2016/04/22 18:00:59 by adubedat         ###   ########.fr       */
+/*   Updated: 2016/04/22 20:02:41 by adubedat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static void	found_shorter_path(t_rooms *room, t_room **path)
 
 	temp = room->tubes;
 	temp2 = room;
-	*path = create_elem(*path, temp2->name);
+	*path = create_elem(*path, temp2->name, temp2->number);
 	temp2->used = 1;
 	if (temp2->end == 1 || temp2->number > room->number)
 		return ;
@@ -64,7 +64,7 @@ static void	found_shorter_path(t_rooms *room, t_room **path)
 	if (temp2->used == 1)
 	{
 		if (temp2->end == 1)
-			*path = create_elem(*path, temp2->name);
+			*path = create_elem(*path, temp2->name, temp2->number);
 		else
 			delete_path(path);
 		return ;

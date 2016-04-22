@@ -6,7 +6,7 @@
 /*   By: adubedat <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/18 21:03:50 by adubedat          #+#    #+#             */
-/*   Updated: 2016/04/22 17:57:54 by adubedat         ###   ########.fr       */
+/*   Updated: 2016/04/22 20:02:50 by adubedat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ typedef struct		s_rooms
 typedef struct		s_room
 {
 	char			*name;
+	int				ant;
+	int				number;
 	struct s_room	*next;
 }					t_room;
 
@@ -53,11 +55,12 @@ void				free_split(char **split);
 void				error_room(void);
 void				check_data(t_rooms *room);
 void				solve(t_rooms *room, t_paths **paths);
-t_room				*create_elem(t_room *path, char *name);
+t_room				*create_elem(t_room *path, char *name, int number);
 void				print_list_number(t_tubes *room);
 t_rooms				*search_temp2(t_rooms *start);
 void				path_error(void);
 void				delete_path(t_room **path);
 t_paths				*initialize_new(void);
+void				move_ants(t_paths *paths, int ants);
 
 #endif
