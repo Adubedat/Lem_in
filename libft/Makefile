@@ -6,7 +6,7 @@
 #    By: adubedat <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/11/27 19:30:56 by adubedat          #+#    #+#              #
-#    Updated: 2016/04/21 15:44:20 by adubedat         ###   ########.fr        #
+#    Updated: 2016/03/11 23:44:24 by adubedat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,17 +34,37 @@ SRC = ft_putchar.c ft_putstr.c ft_putendl.c ft_putnbr.c ft_putchar_fd.c \
 
 OBJ = $(SRC:.c=.o)
 
+WFLAGS = -Wall -Werror -Wextra
+
+.SILENT:
+
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	gcc -Wall -Wextra -Werror -c $(SRC)
 	ar rcs $(NAME) $(OBJ)
+	printf "\e[32m----------------------------------\e[36m\n"
+	printf "\e[32m[✔]\e[36m $@"
+	printf "\n\e[32m----------------------------------\e[36m"
+	printf "\033[0m\n"
+
+%.o: %.c
+	$(CC) $(WFLAGS) -c -o $@ $^
+	printf "\e[32m[✔]\e[36m $@"
+	printf "\033[0m\n"
 
 clean:
 	rm -f $(OBJ)
+	printf "\e[31m----------------------------------\n"
+	printf "[✔]\e[36m $(NAME): Objects deleted\n"
+	printf "\e[31m----------------------------------\e[36m"
+	printf "\033[0m\n"
 
 fclean: clean
 	rm -f $(NAME)
+	printf "\e[31m----------------------------------\n"
+	printf "[✔]\e[36m $(NAME): All deleted\n"
+	printf "\e[31m----------------------------------\e[36m"
+	printf "\033[0m\n"
 
 re: fclean all
 

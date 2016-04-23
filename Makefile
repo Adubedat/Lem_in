@@ -3,66 +3,45 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: adubedat <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: tvermeil <tvermeil@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2016/03/07 18:29:44 by adubedat          #+#    #+#              #
-#    Updated: 2016/04/23 15:03:15 by adubedat         ###   ########.fr        #
+#    Created: 2015/12/18 19:13:31 by tvermeil          #+#    #+#              #
+#    Updated: 2016/04/23 17:59:57 by adubedat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = lem-in
-CC = gcc
-CFLAGS = -Wall -Wextra -Werror
-
 MAKEFLAGS += --no-print-directory
 
-SRC_NAME =  main.c \
-			get_input.c \
-			error.c \
-			solve.c \
-			solve2.c \
-			move_ants.c \
-			print_moves.c \
-			bonus.c \
+SUB_MAKEFILES = libft \
+				sources \
 
-OBJ = $(SRC_NAME:.c=.o)
+all: libft.a lem-in
 
-.SILENT:
+libft.a:
+	@make -C libft all
 
-all: $(NAME)
-
-libft/libft.a:
-	@make -C libft/
-
-$(NAME): libft/libft.a $(OBJ)
-	$(CC) $(WFLAGS) -L libft -lft $(OBJ) -o $(NAME)
-	printf "\e[32m----------------------------------\e[36m\n"
-	printf "\e[32m[✔]\e[36m $@"
-	printf "\n\e[32m----------------------------------\e[36m"
-	printf "\033[0m\n"
-
-%.o: %.c
-	$(CC) $(WFLAGS) -c -o $@ $^
-	printf "\e[32m[✔]\e[36m $@"
-	printf "\033[0m\n"
+lem-in:
+	@make -C sources all
 
 clean:
-	@make -C libft/ clean
-	rm -f $(OBJ)
-	printf "\e[31m----------------------------------\n"
-	printf "[✔]\e[36m $(NAME): Objects deleted\n"
-	printf "\e[31m----------------------------------\e[36m"
-	printf "\033[0m\n"
+	@-for i in $(SUB_MAKEFILES) ; do \
+		make -C $$i clean; \
+	done
+	@rmdir obj 2> /dev/null || true
 
 fclean: clean
-	@make -C libft/ fclean
-	rm -f $(NAME)
-	printf "\e[31m----------------------------------\n"
-	printf "[✔]\e[36m $(NAME): All deleted\n"
-	printf "\e[31m----------------------------------\e[36m"
-	printf "\033[0m\n"
-	@make -C libft/ fclean
+	@for i in $(SUB_MAKEFILES) ; do \
+		make -C $$i fclean; \
+	done
 
 re: fclean all
+
+ac: all clean
+
+norme:
+	@for i in $(SUB_MAKEFILES) ; do \
+		make -C $$i norme; \
+	done
+	@norminette include/*.h
 
 .PHONY: all clean fclean re
