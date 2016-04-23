@@ -6,7 +6,7 @@
 #    By: adubedat <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/03/07 18:29:44 by adubedat          #+#    #+#              #
-#    Updated: 2016/04/22 19:52:24 by adubedat         ###   ########.fr        #
+#    Updated: 2016/04/23 15:03:15 by adubedat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,8 @@ SRC_NAME =  main.c \
 			solve.c \
 			solve2.c \
 			move_ants.c \
+			print_moves.c \
+			bonus.c \
 
 OBJ = $(SRC_NAME:.c=.o)
 

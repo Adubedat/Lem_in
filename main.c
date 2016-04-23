@@ -6,7 +6,7 @@
 /*   By: adubedat <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/18 20:02:35 by adubedat          #+#    #+#             */
-/*   Updated: 2016/04/22 20:01:58 by adubedat         ###   ########.fr       */
+/*   Updated: 2016/04/23 15:09:14 by adubedat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ static int	get_ants_number(char **input)
 	if (get_next_line(0, &str) == -1)
 	{
 		ft_putendl("Error : Reading has failed");
-		exit (1);
+		exit(1);
 	}
 	if (str[0] == '\0')
 	{
 		ft_putendl("Error : Not enough data");
-		exit (1);
+		exit(1);
 	}
 	while (str[i])
 	{
@@ -50,6 +50,7 @@ int			main(int argc, char **argv)
 
 	room = NULL;
 	paths = NULL;
+	check_help(argc, argv);
 	input = ft_strdup("");
 	ants = get_ants_number(&input);
 	room = get_input(&input, room, 0, 0);
@@ -59,6 +60,7 @@ int			main(int argc, char **argv)
 		return (0);
 	ft_putchar('\n');
 	solve(room, &paths);
+	check_bonus(room, paths, argv);
 	move_ants(paths, ants);
 	return (0);
 }

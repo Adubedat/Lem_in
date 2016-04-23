@@ -6,7 +6,7 @@
 /*   By: adubedat <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/18 21:03:50 by adubedat          #+#    #+#             */
-/*   Updated: 2016/04/22 20:02:50 by adubedat         ###   ########.fr       */
+/*   Updated: 2016/04/23 15:10:09 by adubedat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,13 @@ typedef struct		s_paths
 	struct s_paths	*next;
 }					t_paths;
 
+typedef struct		s_ants
+{
+	int				name;
+	t_room			*room;
+}					t_ants;
+
+void				print_moves(t_ants ants[], int ants_nbr);
 t_rooms				*get_input(char **input, t_rooms *room, int start, int end);
 int					check_tube(char *str, int i, t_rooms *room);
 void				free_split(char **split);
@@ -62,5 +69,7 @@ void				path_error(void);
 void				delete_path(t_room **path);
 t_paths				*initialize_new(void);
 void				move_ants(t_paths *paths, int ants);
+void				check_help(int argc, char **argv);
+void				check_bonus(t_rooms *room, t_paths *paths, char **argv);
 
 #endif

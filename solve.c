@@ -6,7 +6,7 @@
 /*   By: adubedat <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/19 05:49:24 by adubedat          #+#    #+#             */
-/*   Updated: 2016/04/22 20:02:41 by adubedat         ###   ########.fr       */
+/*   Updated: 2016/04/23 14:32:21 by adubedat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,9 @@ static t_rooms	*found_path(t_rooms *begin_list, int i, int *change)
 		temp = temp->next;
 	}
 	return (begin_list);
-}	
+}
 
-static void	found_shorter_path(t_rooms *room, t_room **path)
+static void		found_shorter_path(t_rooms *room, t_room **path)
 {
 	t_tubes *temp;
 	t_rooms *temp2;
@@ -72,7 +72,7 @@ static void	found_shorter_path(t_rooms *room, t_room **path)
 	found_shorter_path(temp2, path);
 }
 
-static void	create_paths(t_rooms *room, t_paths **paths)
+static void		create_paths(t_rooms *room, t_paths **paths)
 {
 	t_rooms	*temp2;
 	t_paths *tmp;
@@ -100,7 +100,7 @@ static void	create_paths(t_rooms *room, t_paths **paths)
 	create_paths(room, paths);
 }
 
-void		solve(t_rooms *room, t_paths **paths)
+void			solve(t_rooms *room, t_paths **paths)
 {
 	t_rooms *temp;
 	int		i;

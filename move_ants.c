@@ -6,7 +6,7 @@
 /*   By: adubedat <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/22 19:02:04 by adubedat          #+#    #+#             */
-/*   Updated: 2016/04/22 21:39:39 by adubedat         ###   ########.fr       */
+/*   Updated: 2016/04/23 14:31:32 by adubedat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,37 +23,36 @@ static void	create_start(t_room **room)
 	*room = new;
 }
 
-static void	move_ants4(t_paths *paths)
+static void	move_ants4(t_paths *paths, int ants_nbr)
 {
 	int		i;
-	int		tmp;
-	t_paths	*temp;
-	t_room	*room;
+	t_ants	ants[ants_nbr];
+	t_paths *temp;
 
 	temp = paths;
-	i = 0;                                    ////BULLSHIT
-	while (temp != NULL)
+	i = 0;
+	while (i < ants_nbr)
 	{
-		room = temp->room;
-		while (room->next != NULL)
+		ants[i].name = i + 1;
+		while (temp->room->ant <= 0)
 		{
-			if (room->ant > 0 && ft_strcmp(room->name, "start") == 0)
-			{
-				i++;
-				room->ant -= 1;
-				room->next->ant += i;
-				ft_printf("L%d-%s ", i, room->next->name);
-				room = room->next;
-				tmp = i;
-			}
-			if (tmp != 0)
-			{
-				tmp = room->next->ant
-				room->next->ant += room->ant
+			if (temp->next == NULL)
+				temp = paths;
+			else
+				temp = temp->next;
+		}
+		ants[i].room = temp->room;
+		temp->room->ant -= 1;
+		if (temp->next == NULL)
+			temp = paths;
+		else
+			temp = temp->next;
+		i++;
+	}
+	print_moves(ants, ants_nbr);
+}
 
-
-	
-static void	move_ants3(t_paths *paths, int i)
+static void	move_ants3(t_paths *paths, int i, int ants)
 {
 	t_paths *temp;
 
@@ -71,16 +70,10 @@ static void	move_ants3(t_paths *paths, int i)
 			temp = temp->next;
 	}
 	temp = paths;
-	move_ants4(paths);
-	while (temp != NULL)
-	{
-		ft_printf("%d\n", temp->room->ant);
-		temp = temp->next;
-	}
+	move_ants4(paths, ants);
 }
 
-
-static void	move_ants2(t_paths *paths, int paths_nbr)
+static void	move_ants2(t_paths *paths, int paths_nbr, int ants)
 {
 	static int	i = 0;
 	t_paths		*temp;
@@ -101,9 +94,9 @@ static void	move_ants2(t_paths *paths, int paths_nbr)
 		temp = paths;
 		if ((temp->room->ant - temp->next->room->ant)
 			< (temp->next->room->next->number - temp->room->next->number))
-			return (move_ants2(paths, paths_nbr));
+			return (move_ants2(paths, paths_nbr, ants));
 	}
-	move_ants3(paths, i);
+	move_ants3(paths, i, ants);
 }
 
 void		move_ants(t_paths *paths, int ants)
@@ -132,5 +125,5 @@ void		move_ants(t_paths *paths, int ants)
 		}
 		temp = temp->next;
 	}
-	move_ants2(paths, paths_nbr);
+	move_ants2(paths, paths_nbr, ants);
 }

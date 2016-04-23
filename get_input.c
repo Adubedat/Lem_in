@@ -6,7 +6,7 @@
 /*   By: adubedat <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/18 21:45:10 by adubedat          #+#    #+#             */
-/*   Updated: 2016/04/21 22:27:29 by adubedat         ###   ########.fr       */
+/*   Updated: 2016/04/23 14:29:48 by adubedat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static int		check_str(char *str, t_rooms *room)
 	i = 0;
 	if (flag == 1)
 	{
-		if (check_room(str, 0) ==  0)
+		if (check_room(str, 0) == 0)
 		{
 			flag = 2;
 			return (check_str(str, room));
@@ -118,7 +118,6 @@ t_rooms			*get_input(char **input, t_rooms *room, int start, int end)
 {
 	char	*str;
 
-	
 	if (get_next_line(0, &str) == 0 || str[0] == '\0')
 		return (room);
 	if (ft_strcmp(str, "##start") == 0)
