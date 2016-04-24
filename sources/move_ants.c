@@ -6,7 +6,7 @@
 /*   By: adubedat <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/22 19:02:04 by adubedat          #+#    #+#             */
-/*   Updated: 2016/04/23 14:31:32 by adubedat         ###   ########.fr       */
+/*   Updated: 2016/04/24 13:50:49 by adubedat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	create_start(t_room **room)
 	*room = new;
 }
 
-static void	move_ants4(t_paths *paths, int ants_nbr)
+static void	move_ants4(t_paths *paths, int ants_nbr, char **argv)
 {
 	int		i;
 	t_ants	ants[ants_nbr];
@@ -49,10 +49,10 @@ static void	move_ants4(t_paths *paths, int ants_nbr)
 			temp = temp->next;
 		i++;
 	}
-	print_moves(ants, ants_nbr);
+	check_details(ants, ants_nbr, argv);
 }
 
-static void	move_ants3(t_paths *paths, int i, int ants)
+static void	move_ants3(t_paths *paths, int i, int ants, char **argv)
 {
 	t_paths *temp;
 
@@ -70,10 +70,10 @@ static void	move_ants3(t_paths *paths, int i, int ants)
 			temp = temp->next;
 	}
 	temp = paths;
-	move_ants4(paths, ants);
+	move_ants4(paths, ants, argv);
 }
 
-static void	move_ants2(t_paths *paths, int paths_nbr, int ants)
+static void	move_ants2(t_paths *paths, int paths_nbr, int ants, char **argv)
 {
 	static int	i = 0;
 	t_paths		*temp;
@@ -94,12 +94,12 @@ static void	move_ants2(t_paths *paths, int paths_nbr, int ants)
 		temp = paths;
 		if ((temp->room->ant - temp->next->room->ant)
 			< (temp->next->room->next->number - temp->room->next->number))
-			return (move_ants2(paths, paths_nbr, ants));
+			return (move_ants2(paths, paths_nbr, ants, argv));
 	}
-	move_ants3(paths, i, ants);
+	move_ants3(paths, i, ants, argv);
 }
 
-void		move_ants(t_paths *paths, int ants)
+void		move_ants(t_paths *paths, int ants, char **argv)
 {
 	t_paths	*temp;
 	int		paths_nbr;
@@ -125,5 +125,5 @@ void		move_ants(t_paths *paths, int ants)
 		}
 		temp = temp->next;
 	}
-	move_ants2(paths, paths_nbr, ants);
+	move_ants2(paths, paths_nbr, ants, argv);
 }

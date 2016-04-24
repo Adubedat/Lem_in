@@ -6,7 +6,7 @@
 /*   By: adubedat <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/18 20:02:35 by adubedat          #+#    #+#             */
-/*   Updated: 2016/04/23 17:31:39 by adubedat         ###   ########.fr       */
+/*   Updated: 2016/04/24 13:22:43 by adubedat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,20 @@ static int	get_ants_number(char **input)
 	return (ft_atoi(str));
 }
 
+static int	special_case(t_rooms *room)
+{
+	t_rooms	*temp;
+
+	temp = room;
+	while (temp != NULL)
+	{
+		if (temp->start == 1 && temp->end == 1)
+			return (1);
+		temp = temp->next;
+	}
+	return (0);
+}
+
 int			main(int argc, char **argv)
 {
 	t_rooms	*room;
@@ -55,12 +69,15 @@ int			main(int argc, char **argv)
 	ants = get_ants_number(&input);
 	room = get_input(&input, room, 0, 0);
 	check_data(room);
-	ft_putendl(input);
-	if (ants == 0)
+	if (special_case(room) == 1 || ants == 0)
+	{
+		ft_putendl(input);
 		return (0);
+	}
+	ft_putendl(input);
 	ft_putchar('\n');
 	solve(room, &paths);
 	check_bonus(room, paths, argv);
-	move_ants(paths, ants);
+	move_ants(paths, ants, argv);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: adubedat <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/23 14:47:41 by adubedat          #+#    #+#             */
-/*   Updated: 2016/04/23 16:02:54 by adubedat         ###   ########.fr       */
+/*   Updated: 2016/04/24 15:14:15 by adubedat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,10 @@
 static void	wrong_entry(char *str)
 {
 	ft_printf("Error : Unknown option [%s]\n", str);
-	ft_putendl("Expected entry : ./lem-in [-hrp] < [file_name]");
+	ft_putendl("Expected entry : ./lem-in [-hdrp] < [file_name]");
 	ft_putendl("-h : Help\n-r : Show rooms details");
 	ft_putendl("-p : Show the possible paths");
+	ft_putendl("-d : Show details");
 	exit(1);
 }
 
@@ -35,13 +36,13 @@ void		check_help(int argc, char **argv)
 		j++;
 		while (argv[i][j])
 		{
-			if (!(argv[i][j] == 'h' || argv[i][j] == 'r' || argv[i][j] == 'p'))
+			if (ft_strchr("hrpd", argv[i][j]) == NULL)
 				wrong_entry(argv[i]);
 			if (argv[i][j] == 'h')
 			{
-				ft_putendl("Expected entry : ./lem-in [-hrp] < [file_name]");
+				ft_putendl("Expected entry : ./lem-in [-hdrp] < [file_name]");
 				ft_putendl("-h : Help\n-r : Show rooms details");
-				ft_putendl("-p : Show the possible paths");
+				ft_putendl("-p : Show the possible pathsi\n-d : Show details");
 				exit(1);
 			}
 			j++;
