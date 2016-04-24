@@ -6,7 +6,7 @@
 /*   By: adubedat <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/18 20:02:35 by adubedat          #+#    #+#             */
-/*   Updated: 2016/04/24 13:22:43 by adubedat         ###   ########.fr       */
+/*   Updated: 2016/04/24 16:48:41 by adubedat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,19 @@ static int	get_ants_number(char **input)
 	i = 0;
 	if (get_next_line(0, &str) == -1)
 	{
-		ft_putendl("Error : Reading has failed");
+		ft_putendl("Error : Reading has failed.");
 		exit(1);
 	}
 	if (str[0] == '\0')
 	{
-		ft_putendl("Error : Not enough data");
+		ft_putendl("Error : Not enough data.");
 		exit(1);
 	}
 	while (str[i])
 	{
 		if (!(str[i] >= '0' && str[i] <= '9'))
 		{
-			ft_putendl("Error : Invalid ants number");
+			ft_putendl("Error : Invalid ants number.");
 			exit(1);
 		}
 		i++;
@@ -55,6 +55,15 @@ static int	special_case(t_rooms *room)
 	return (0);
 }
 
+void		check_ants(int ants)
+{
+	if (ants < 0)
+	{
+		ft_putendl("Error : Invalid ants number.");
+		exit(1);
+	}
+}
+
 int			main(int argc, char **argv)
 {
 	t_rooms	*room;
@@ -67,6 +76,8 @@ int			main(int argc, char **argv)
 	check_help(argc, argv);
 	input = ft_strdup("");
 	ants = get_ants_number(&input);
+	check_ants(ants);
+	ft_putnbr(ants);
 	room = get_input(&input, room, 0, 0);
 	check_data(room);
 	if (special_case(room) == 1 || ants == 0)

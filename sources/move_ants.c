@@ -6,7 +6,7 @@
 /*   By: adubedat <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/22 19:02:04 by adubedat          #+#    #+#             */
-/*   Updated: 2016/04/24 13:50:49 by adubedat         ###   ########.fr       */
+/*   Updated: 2016/04/24 16:55:26 by adubedat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,13 @@ static void	create_start(t_room **room)
 static void	move_ants4(t_paths *paths, int ants_nbr, char **argv)
 {
 	int		i;
-	t_ants	ants[ants_nbr];
+	t_ants	*ants;
 	t_paths *temp;
 
+	ants = (t_ants*)malloc(sizeof(t_ants) * ants_nbr);
 	temp = paths;
-	i = 0;
-	while (i < ants_nbr)
+	i = -1;
+	while (++i < ants_nbr)
 	{
 		ants[i].name = i + 1;
 		while (temp->room->ant <= 0)
@@ -47,7 +48,6 @@ static void	move_ants4(t_paths *paths, int ants_nbr, char **argv)
 			temp = paths;
 		else
 			temp = temp->next;
-		i++;
 	}
 	check_details(ants, ants_nbr, argv);
 }

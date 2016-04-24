@@ -6,13 +6,13 @@
 /*   By: adubedat <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/23 14:02:42 by adubedat          #+#    #+#             */
-/*   Updated: 2016/04/24 14:54:33 by adubedat         ###   ########.fr       */
+/*   Updated: 2016/04/24 16:30:36 by adubedat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-static void	print_moves(t_ants ants[], int ants_nbr)
+static void	print_moves(t_ants *ants, int ants_nbr)
 {
 	int	i;
 
@@ -61,7 +61,7 @@ static void	move(int i, t_ants ants)
 	}
 }
 
-static void	print_moves_details(t_ants ants[], int ants_nbr)
+static void	print_moves_details(t_ants *ants, int ants_nbr)
 {
 	int	i;
 
@@ -90,7 +90,7 @@ static void	print_moves_details(t_ants ants[], int ants_nbr)
 	return (print_moves_details(ants, ants_nbr));
 }
 
-void		check_details(t_ants ants[], int ants_nbr, char **argv)
+void		check_details(t_ants *ants, int ants_nbr, char **argv)
 {
 	int	i;
 	int j;

@@ -6,7 +6,7 @@
 /*   By: adubedat <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/19 05:49:24 by adubedat          #+#    #+#             */
-/*   Updated: 2016/04/23 14:32:21 by adubedat         ###   ########.fr       */
+/*   Updated: 2016/04/24 16:54:52 by adubedat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static void		found_shorter_path(t_rooms *room, t_room **path)
 		return ;
 	while (temp != NULL)
 	{
-		if ((temp->room->number < temp2->number && temp->room->number != -1
+		if ((temp->room->number <= temp2->number && temp->room->number != -1
 				&& temp->room->used == 0) || temp->room->end == 1)
 			temp2 = temp->room;
 		temp = temp->next;
