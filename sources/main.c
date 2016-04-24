@@ -6,7 +6,7 @@
 /*   By: adubedat <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/18 20:02:35 by adubedat          #+#    #+#             */
-/*   Updated: 2016/04/24 16:48:41 by adubedat         ###   ########.fr       */
+/*   Updated: 2016/04/24 19:20:23 by adubedat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,6 @@ int			main(int argc, char **argv)
 	input = ft_strdup("");
 	ants = get_ants_number(&input);
 	check_ants(ants);
-	ft_putnbr(ants);
 	room = get_input(&input, room, 0, 0);
 	check_data(room);
 	if (special_case(room) == 1 || ants == 0)

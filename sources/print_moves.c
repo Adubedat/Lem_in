@@ -6,7 +6,7 @@
 /*   By: adubedat <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/23 14:02:42 by adubedat          #+#    #+#             */
-/*   Updated: 2016/04/24 16:30:36 by adubedat         ###   ########.fr       */
+/*   Updated: 2016/04/24 19:29:51 by adubedat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static void	print_moves(t_ants *ants, int ants_nbr)
 		i++;
 	}
 	ft_putchar('\n');
-	if (ants[ants_nbr - 1].room->next == NULL)
+	if (ants[ants_nbr - 1].room->next == NULL)    // bug affichage derniere ligne. fonction check a faire
 		return ;
 	return (print_moves(ants, ants_nbr));
 }
